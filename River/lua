@@ -1,0 +1,248 @@
+_G.UrlIsonade = "https://discord.com/api/webhooks/1335124021339095112/jj_NZ3x8LQ8Il6t2Q_HctwqoJ7bFbJpuiBiyaUpymPHoNv21JFqYRQkSlcFPYsDiIupm"
+_G.UrlAurora = "https://discord.com/api/webhooks/1335124689034674197/nbFJsR6VE36v5qlsxKs6iZQxuJLhbCzZlYNZym3T-46ia6vV0BZHM36khJcAyrqtirG-"
+_G.UrlMeteor = "https://discord.com/api/webhooks/1335200824695197698/CuEFtM02umnLyv-2AXXYyaMlM5fWZOTD5t_iC0NQYSEqaOha7IqRRNwBCooF7WzXcYWQ"
+_G.UrlMegalodon = "https://discord.com/api/webhooks/1335200930890645606/44gPr1l4YJJ79bj0fu88hCwuzjYkZb_4pHMcRXjKb3robTq_emJze_L4rxQa_CiMZUHb"
+_G.UrlGoldenTide = "https://discord.com/api/webhooks/1335201054605709354/G5GeivHK__OqKZaeg1G0PqFYq8ZMaVwZSrXqxWxx-o7qeWQwEgKMcBPKaq8s2DuCUOP-"
+
+spawn(function()
+    for i, v in pairs(workspace.zones.fishing:GetChildren()) do
+        if v.Name == "Isonade" then
+            pcall(function()
+                local data = {
+                    ["embeds"] = {{
+                        ["title"] = "**Isonade Notify | River Hub**",
+                        ["color"] = 0x7269da,
+                        ["fields"] = {
+                            {
+                                ["name"] = "**Players:**", 
+                                ["value"] = string.format("```%d/%d```", #game:GetService("Players"):GetPlayers(), game:GetService("Players").MaxPlayers), 
+                                ["inline"] = true},
+                            {
+                                ["name"] = "**Position:**", 
+                                ["value"] = string.format("```X:%.2f, Y:%.2f, Z:%.2f```", v.Position.X, v.Position.Y, v.Position.Z), 
+                                ["inline"] = true},
+                            {
+                                ["name"] = "**JobId:**", 
+                                ["value"] = string.format("```%s```", game.JobId), 
+                                ["inline"] = true},
+                            {
+                                ["name"] = "**Script:**", 
+                                ["value"] = string.format("```lua\n%s\n```", string.format('game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "%s")', game.JobId)), 
+                                ["inline"] = false}
+                      },
+                      ["thumbnail"] = {
+				["url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+                        },
+                        ["footer"] = {
+                         	["text"] = "River Hub";
+			     			["icon_url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+					};
+					["timestamp"] = DateTime.now():ToIsoDate()
+                    }}
+                }
+                local sendRequest = syn or request or http_request
+                if sendRequest then
+                    sendRequest({Url = _G.UrlIsonade, Method = 'POST', Headers = {['Content-Type'] = 'application/json'}, Body = game:GetService('HttpService'):JSONEncode(data)})
+                end
+            end)
+            break
+        end
+    end
+end)
+
+spawn(function()
+    if game:GetService("ReplicatedStorage").world.weather.Value == "Aurora_Borealis" then
+        pcall(function()
+            local data = {
+                ["embeds"] = {{
+                    ["title"] = "**Aurora Notify | River Hub**",
+                    ["color"] = 0x7269da,
+                    ["fields"] = {
+                        {
+                            ["name"] = "**Players:**", 
+                            ["value"] = string.format("```%d/%d```", #game:GetService("Players"):GetPlayers(), game:GetService("Players").MaxPlayers), 
+                           ["inline"] = true},
+                        {
+                           ["name"] = "**JobId:**", 
+                           ["value"] = string.format("```%s```", game.JobId), 
+                           ["inline"] = true},
+                        {
+                           ["name"] = "**Script:**", 
+                           ["value"] = string.format("```lua\n%s\n```", string.format('game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "%s")', game.JobId)), 
+                            ["inline"] = false}
+                      },
+                      ["thumbnail"] = {
+				["url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+                    },
+                    ["footer"] = {
+                         	["text"] = "River Hub";
+			     			["icon_url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+					};
+					["timestamp"] = DateTime.now():ToIsoDate()
+                    }
+                }}
+            
+            local sendRequest = syn or request or http_request
+            if sendRequest then
+                sendRequest({Url = _G.UrlAurora, Method = 'POST', Headers = {['Content-Type'] = 'application/json'}, Body = game:GetService('HttpService'):JSONEncode(data)})
+                _G.Aurora = true
+            end
+        end)
+    else
+        _G.Aurora = true
+    end
+end)
+
+spawn(function()
+    for _, v in pairs(workspace.MeteorItems:GetChildren()) do
+        pcall(function()
+            local data = {
+                ["embeds"] = {{
+                    ["title"] = "**Meteor Notify | River Hub**",
+                    ["color"] = 0x7269da,
+                    ["fields"] = {
+                        {
+                    ["name"] = "**Players:**", 
+                    ["value"] = string.format("```%d/%d```", #game.Players:GetPlayers(), game.Players.MaxPlayers), 
+                    ["inline"] = true},
+                        {
+                    ["name"] = "**Gem:**", 
+                    ["value"] = string.format("```%s```", v.Name), 
+                    ["inline"] = true},
+                        {
+                    ["name"] = "**JobId:**", 
+                    ["value"] = string.format("```%s```", game.JobId), 
+                    ["inline"] = true},
+                        {
+                    ["name"] = "**Script:**", 
+                    ["value"] = string.format("```lua\n%s\n```", string.format('game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "%s")', game.JobId)), 
+                    ["inline"] = false}
+                 },
+                      ["thumbnail"] = {
+				["url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+                    },
+                    ["footer"] = {
+                		["text"] = "River Hub";
+						["icon_url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+					};
+					["timestamp"] = DateTime.now():ToIsoDate()
+                       }
+                }}
+            
+            local sendRequest = syn or request or http_request
+            if sendRequest then
+                sendRequest({Url = _G.UrlMeteor, Method = 'POST', Headers = {['Content-Type'] = 'application/json'}, Body = game:GetService('HttpService'):JSONEncode(data)})
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    for i, v in pairs(workspace.zones.fishing:GetChildren()) do
+        if v.Name:lower():find("megalodon") then
+            pcall(function()
+                local data = {
+                    ["embeds"] = {{
+                        ["title"] = "**Megalodon Notify | River Hub**",
+                        ["color"] = 0x7269da,
+                        ["fields"] = {
+                            {
+                        ["name"] = "**Players:**", 
+                        ["value"] = string.format("```%d/%d```", #game:GetService("Players"):GetPlayers(), game:GetService("Players").MaxPlayers), 
+                        ["inline"] = true},
+                            {
+                        ["name"] = "**Position:**", 
+                        ["value"] = string.format("```X:%.2f, Y:%.2f, Z:%.2f```", v.Position.X, v.Position.Y, v.Position.Z), 
+                        ["inline"] = true},
+                            {
+                        ["name"] = "**JobId:**", 
+                        ["value"] = string.format("```%s```", game.JobId), 
+                        ["inline"] = true},
+                            {
+                        ["name"] = "**Script:**", 
+                        ["value"] = string.format("```lua\n%s\n```", string.format('game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "%s")', game.JobId)), 
+                        ["inline"] = false}
+                         },
+                      ["thumbnail"] = {
+				["url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+                        },
+                        ["footer"] = {
+ 						["text"] = "River Hub";
+						["icon_url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+					};
+					["timestamp"] = DateTime.now():ToIsoDate()
+                        }
+                    }}
+                
+                local sendRequest = syn or request or http_request
+                if sendRequest then
+                    sendRequest({Url = _G.UrlMegalodon, Method = 'POST', Headers = {['Content-Type'] = 'application/json'}, Body = game:GetService('HttpService'):JSONEncode(data)})
+                end
+            end)
+            break
+        end
+    end
+end)
+
+spawn(function()
+    for i, v in pairs(workspace.zones.fishing:GetChildren()) do
+        if v.Name:lower():find("golden tide") then
+            pcall(function()
+                local data = {
+                    ["embeds"] = {{
+                        ["title"] = "**Golden Tide Notify | River Hub**",
+                        ["color"] = 0x7269da,
+                        ["fields"] = {
+                            {
+                        ["name"] = "**Players:**", 
+                        ["value"] = string.format("```%d/%d```", #game:GetService("Players"):GetPlayers(), game:GetService("Players").MaxPlayers), 
+                        ["inline"] = true},
+                            {
+                        ["name"] = "**Position:**", 
+                        ["value"] = string.format("```X:%.2f, Y:%.2f, Z:%.2f```", v.Position.X, v.Position.Y, v.Position.Z), 
+                        ["inline"] = true},
+                            {
+                        ["name"] = "**JobId:**", 
+                        ["value"] = string.format("```%s```", game.JobId), ["inline"] = true},
+                            {
+                        ["name"] = "**Script:**", 
+                        ["value"] = string.format("```lua\n%s\n```", string.format('game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "%s")', game.JobId)), 
+                        ["inline"] = false}
+                   },
+                      ["thumbnail"] = {
+				["url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+                        },
+                        ["footer"] = {
+ 						["text"] = "River Hub";
+						["icon_url"] = "https://s13.gifyu.com/images/b2Ly5.png";
+					};
+					["timestamp"] = DateTime.now():ToIsoDate()
+                        }
+                    }}
+                
+                local sendRequest = syn or request or http_request
+                if sendRequest then
+                    sendRequest({Url = _G.UrlGoldenTide, Method = 'POST', Headers = {['Content-Type'] = 'application/json'}, Body = game:GetService('HttpService'):JSONEncode(data)})
+                end
+            end)
+            break
+        end
+    end
+end)
+
+while true do task.wait()
+    pcall(function()
+        local response = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")
+        local serverData = game:GetService("HttpService"):JSONDecode(response)
+
+        for _, server in ipairs(serverData.data) do
+            if server.playing < server.maxPlayers and server.id ~= game.JobId then
+                pcall(function()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
+                end)
+            end
+        end
+    end)
+end
+
+-- workspace.zones.fishing
