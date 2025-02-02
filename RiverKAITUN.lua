@@ -28,8 +28,6 @@ spawn(function()
 end)
 
 
-loadstring(game:HttpGet("https://pastebin.com/raw/im9UmM84"))()
-
 repeat wait() until game.Players
 repeat wait() until game.Players.LocalPlayer
 repeat wait() until game.ReplicatedStorage
