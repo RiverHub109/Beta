@@ -117,7 +117,7 @@ BackgroundImage.Name = "BackgroundImage"
 BackgroundImage.Parent = ToggleButton
 BackgroundImage.BackgroundTransparency = 1
 BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
-BackgroundImage.Image = "rbxassetid://88374449523340"
+BackgroundImage.Image = "rbxassetid://820596355562"
 BackgroundImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
 ToggleButtonHUI.Parent = ToggleButton
