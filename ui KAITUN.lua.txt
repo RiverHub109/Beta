@@ -17,7 +17,7 @@ local logoLabel = Instance.new("ImageLabel")
 logoLabel.Size = UDim2.new(0.15, 0, 0.15, 0)
 logoLabel.Position = UDim2.new(0.425, 0, 0.05, 0)
 logoLabel.BackgroundTransparency = 1
-logoLabel.Image = "rbxassetid://88374449523340"
+logoLabel.Image = "rbxassetid://820596355562"
 logoLabel.Visible = false
 logoLabel.Parent = screenGui
 
